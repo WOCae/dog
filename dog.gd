@@ -2,23 +2,9 @@ extends Area2D
 
 const SPEED := 15.0
 
-# 状態
-enum eState {
-	IDLE,
-	RUN,
-}
-
-var state = eState.IDLE
-var ghost_cnt = 0
-
-@onready var _ghost_effects = $"GhostEffectLayer"
-const GHOST_EFFECT = preload("res://dog_ghost.tscn")
-var diretFlag:int
-var posi = Vector2.ZERO	
-
 func _ready() -> void:
-	position = Vector2(400,500)	
-	scale =  Vector2(2,2)	
+	position = Vector2(400,500)	 #初期位置
+	scale =  Vector2(2,2)	#サイズ
 
 func _process(delta: float) -> void:	
 	#$AnimatedSprite2D.animation = &"walk"
@@ -47,27 +33,44 @@ func _process(delta: float) -> void:
 	position += velocity.normalized() * SPEED
 	$AnimatedSprite2D.play()
 
+	#停止しているかを位置で判定
 	if posi == position:
-		state = eState.IDLE
+		state = eState.STOP
 	if posi != position:
 		posi = position
 		state = eState.RUN
 
+	#残像の呼び出し
+	read_ghost()
 
-	# 残像エフェクトの処理
-	_proc_ghost_effect()
-	
-func _proc_ghost_effect() -> void:
-	if state == eState.IDLE:
-		ghost_cnt = 0
-		return # 停止中は何もしない
+#残像の設定
 
-	# 残像エフェクトを生成判定
-	ghost_cnt += 1
-	if ghost_cnt%5== 1:
-		#_ghost_effects.show()
+var FreqNum:int = 5 #残像の表示頻度 2:多い　10:少ない
+
+#dogの状態
+enum eState {
+	STOP,
+	RUN,
+}
+
+var state = eState.STOP
+var ghostNum = 0
+
+@onready var ghostDog = $"GhostLayer"
+const ghostSecene = preload("res://dog_ghost.tscn")
+var diretFlag:int
+var posi = Vector2.ZERO	
+
+func read_ghost() -> void:
+	if state == eState.STOP:
+		ghostNum = 0
+		return 
+
+	# 残像の生成
+	ghostNum += 1
+	if ghostNum % FreqNum == 1:
 		# 残像エフェクト生成
-		var eft = GHOST_EFFECT.instantiate()
+		var eft = ghostSecene.instantiate()
 		eft.start(position, scale,diretFlag)
-		_ghost_effects.add_child(eft)
-		#ghost_cnt = 0
+		ghostDog.add_child(eft)
+
