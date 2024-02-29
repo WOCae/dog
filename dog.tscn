@@ -73,4 +73,4 @@ shape = SubResource("CircleShape2D_1ku3u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1vqrs")
-animation = &"down"
+animation = &"walk"
