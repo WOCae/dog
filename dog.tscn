@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://dnavg6bh7mcg"]
+
+[ext_resource type="Script" path="res://dog.gd" id="1_5oppx"]
+[ext_resource type="Texture2D" uid="uid://cy3yrc0nqgnor" path="res://dog2.png.png" id="2_4x2gp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ku3u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgsma"]
+atlas = ExtResource("2_4x2gp")
+region = Rect2(256, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx40o"]
+atlas = ExtResource("2_4x2gp")
+region = Rect2(0, 59, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npdf1"]
+atlas = ExtResource("2_4x2gp")
+region = Rect2(128, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4a1ap"]
+atlas = ExtResource("2_4x2gp")
+region = Rect2(192, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhpsf"]
+atlas = ExtResource("2_4x2gp")
+region = Rect2(0, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqopa"]
+atlas = ExtResource("2_4x2gp")
+region = Rect2(64, 0, 64, 59)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1vqrs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgsma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rx40o")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npdf1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a1ap")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhpsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqopa")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="dog" type="Area2D"]
+script = ExtResource("1_5oppx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1ku3u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1vqrs")
+animation = &"down"
