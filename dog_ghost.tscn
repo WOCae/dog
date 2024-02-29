@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://ce4nw6mexxw2x"]
+
+[ext_resource type="Texture2D" uid="uid://cy3yrc0nqgnor" path="res://dog2.png.png" id="1_2i5ic"]
+[ext_resource type="Script" path="res://dog_ghost.gd" id="2_snc1y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npdf1"]
+atlas = ExtResource("1_2i5ic")
+region = Rect2(128, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4a1ap"]
+atlas = ExtResource("1_2i5ic")
+region = Rect2(192, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgsma"]
+atlas = ExtResource("1_2i5ic")
+region = Rect2(256, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx40o"]
+atlas = ExtResource("1_2i5ic")
+region = Rect2(0, 59, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhpsf"]
+atlas = ExtResource("1_2i5ic")
+region = Rect2(0, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqopa"]
+atlas = ExtResource("1_2i5ic")
+region = Rect2(64, 0, 64, 59)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1vqrs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npdf1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a1ap")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgsma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rx40o")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhpsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqopa")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="dog_ghost" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_1vqrs")
+animation = &"up"
+script = ExtResource("2_snc1y")
