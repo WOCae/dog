@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://s745k73p34jj"]
+
+[ext_resource type="PackedScene" uid="uid://dnavg6bh7mcg" path="res://dog.tscn" id="1_pyiab"]
+
+[node name="main" type="Node2D"]
+
+[node name="dog" parent="." instance=ExtResource("1_pyiab")]
