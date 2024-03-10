@@ -76,3 +76,4 @@ sprite_frames = SubResource("SpriteFrames_1vqrs")
 animation = &"up"
 
 [node name="GhostLayer" type="CanvasLayer" parent="."]
+visible = false
